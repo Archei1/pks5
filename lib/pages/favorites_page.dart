@@ -4,8 +4,9 @@ import 'package:pks5/model/product.dart';
 
 class FavoritesPage extends StatelessWidget {
   final List<Car> favoriteCars;
+  final Function(Car) onFavoriteToggle;
 
-  const FavoritesPage({super.key, required this.favoriteCars});
+  const FavoritesPage({super.key, required this.favoriteCars, required this.onFavoriteToggle});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,7 @@ class FavoritesPage extends StatelessWidget {
               car: car,
               isFavorite: true,
               onFavoriteToggle: () {
-                // Можно реализовать удаление из избранного
-                // Для этого потребуется доступ к функции обновления состояния
-                // В данном примере избранное обновляется через MainPage
-                // Поэтому рекомендуется использовать состояние глобально или через state management
+                onFavoriteToggle(car);
               },
             );
           },

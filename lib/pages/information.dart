@@ -16,7 +16,6 @@ class CatalogPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.delete),
             onPressed: () {
-              // Передать информацию о удалении обратно на HomePage
               Navigator.pop(context, car.id);
             },
           ),

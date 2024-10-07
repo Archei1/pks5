@@ -34,25 +34,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
-
-  // Добавим список избранных автомобилей
   List<Car> _favoriteCars = [];
-
-  // Список страниц
-  late List<Widget> _pages;
-
-  @override
-  void initState() {
-    super.initState();
-    _pages = [
-      HomePage(
-        onFavoriteToggle: _toggleFavorite,
-        favoriteCars: _favoriteCars,
-      ),
-      FavoritesPage(favoriteCars: _favoriteCars),
-      const ProfilePage(),
-    ];
-  }
 
   void _toggleFavorite(Car car) {
     setState(() {
@@ -72,6 +54,17 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _pages = [
+      HomePage(
+        onFavoriteToggle: _toggleFavorite,
+        favoriteCars: _favoriteCars,
+      ),
+      FavoritesPage(
+        favoriteCars: _favoriteCars,
+        onFavoriteToggle: _toggleFavorite,
+      ),
+      const ProfilePage(),
+    ];
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
